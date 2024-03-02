@@ -1,6 +1,7 @@
 python 3.11  
 pip install numpy  
 pip install opencv-python   
+pip install ffmpeg-python
 
 ## 运行main.py
 需要修改变量：
