@@ -1,6 +1,6 @@
-python 3.11
-pip install numpy
-pip install opencv-python 
+python 3.11  
+pip install numpy  
+pip install opencv-python   
 
 ## 运行main.py
 需要修改变量：
