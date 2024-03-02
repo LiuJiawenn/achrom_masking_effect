@@ -63,29 +63,30 @@ def temporal_masking_effect(gray_video_matrics, patch_h, patch_w, patch_d):
         end_time = time.time()
         print(f"运行时间：{end_time - start_time}秒")
         count += 1
-        # 下面用于测试
-        # x = restored_masks[count-1]
-        # cm2 = plt.cm.get_cmap('jet')
-        # plt.imshow(x, cmap = cm2)
-        # plt.colorbar()
-        # plt.show()
-        # print('aa')
 
     # 返回响应矩阵
     return restored_masks
 
 #  下面用于测试函数 temporal_masking_effect
-gray_video_matrics = np.load('data/gray_frames.npy')
-mask = temporal_masking_effect(gray_video_matrics, patch_h=90, patch_w=160, patch_d=30)
-np.save('data/tR.py',mask)
-x = mask[0]
-cm2 = plt.cm.get_cmap('jet')
-plt.imshow(x,vmax = 1000, cmap = cm2)
-plt.colorbar()
-# # plt.savefig('spatialMasking5.png', dpi=300)
-plt.show()
+# gray_video_matrics = np.load('data/gray_frames.npy')
+# mask = temporal_masking_effect(gray_video_matrics, patch_h=90, patch_w=160, patch_d=30)
+# np.save('data/tR.py',mask)
+# x = mask[0]
+# cm2 = plt.cm.get_cmap('jet')
+# plt.imshow(x,vmax = 1000, cmap = cm2)
+# plt.colorbar()
+# # # plt.savefig('spatialMasking5.png', dpi=300)
+# plt.show()
 
 
+# mask = np.load('data/tR_test.npy')
+# for i in range(len(mask)):
+#     x = mask[i]
+#     cm2 = plt.cm.get_cmap('jet')
+#     plt.imshow(x,vmax = 1000, cmap = cm2)
+#     plt.colorbar()
+#     # # plt.savefig('spatialMasking5.png', dpi=300)
+#     plt.show()
 
 
 

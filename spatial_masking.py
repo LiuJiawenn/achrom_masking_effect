@@ -71,6 +71,7 @@ def spatial_masking_effect(gray, block=9):
     # 本函数将返回gray的空间掩蔽响应
     # img 输入为帧矩阵，例如1080×1920的 ndarray
     start_time = time.time()
+    gray = gray / 255.0
     neighbourList = neighbour_list(block)
     neighborhood_pixels = get_neighborhood(gray, neighbourList)
 
@@ -97,17 +98,22 @@ def spatial_masking_effect(gray, block=9):
 
     # 将所有行垂直堆叠起来形成最终的图像
     final_image = np.vstack(rows)
+    # 因为1920除不开block = 9 因此把最后剩下的三行补上
+    res = np.pad(final_image, ((0,0),(0,3)),'constant', constant_values=(0,))
     end_time = time.time()
     print(f"运行时间：{end_time - start_time}秒")
-    return final_image
+    return res
 
 # 下面用于测试函数 spatial_masking_effect
 # img = cv2.imread('C:/Users/Jiawen/Desktop/videoPreview/videoSRC142_1920x1080_24.png')
 # gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 # f = spatial_masking_effect(gray, block=9)
-# plt.imshow(f,vmax=5000)
+# plt.imshow(f)
 # plt.colorbar()
 # plt.show()
+
+
+
 
 
 
