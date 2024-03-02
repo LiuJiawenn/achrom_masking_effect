@@ -10,7 +10,7 @@ import os
 if __name__ == "__main__":
     # 存放所有原视频.264文件的文件夹
     raw_video_dir = 'D:/workspace/pycharm/VDPweight_STSUR/data/training/Source/'
-    processor_nb = 3
+    processor_nb = 80
     # 用于分配任务的视频文件名列表
     video_list = os.listdir(raw_video_dir)
     tasks = [[raw_video_dir, filename] for filename in video_list]
