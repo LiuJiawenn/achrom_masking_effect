@@ -47,7 +47,7 @@ def task_function(task_id):
 
     # path
     feature_dir = 'st_features/'  # 用于保存所有计算好的特征
-    running_folder = 'runningFolder/'  # 用于暂存解压的无损视频，在使用后会删除
+    # running_folder = 'runningFolder/'  # 用于暂存解压的无损视频，在使用后会删除
 
     # config:
     #    空间掩蔽需要:
@@ -57,16 +57,19 @@ def task_function(task_id):
     patch_w = 160
     patch_d = int(video.split('_')[2])  # 与帧率保持一致，30或者24
 
-    # step 1： 获取解压后的avi视频
-    s_264 = raw_video_dir + video + '/' + video + '_qp_00.264'  # 264文件路径
-    s_avi = running_folder + video.split('.')[0] + '.avi'  # 转换为avi视频后的存储路径
-    h264_to_avi(s_264, s_avi)
+    # # step 1： 获取解压后的avi视频
+    # s_264 = raw_video_dir + video + '/' + video + '_qp_00.264'  # 264文件路径
+    # s_avi = running_folder + video.split('.')[0] + '.avi'  # 转换为avi视频后的存储路径
+    # h264_to_avi(s_264, s_avi)
+
+    # step 1： 获取解压后的y4m视频
+    s_y4m = raw_video_dir + video + '/' + video + '_qp_00.y4m'
 
     # step 2: 拆分成帧，保存在列表中，每个帧计算空间掩蔽响应
     frames = []  # 用于保存拆分出来的帧
     spatial_masking_frames = []  # 用于保存空间掩蔽响应
 
-    cap = cv2.VideoCapture(s_avi)
+    cap = cv2.VideoCapture(s_y4m)
     ret, frame = cap.read()
     count = 0
     print("正在计算 " + video + " 空间掩蔽")
