@@ -58,7 +58,7 @@ def task_function(task_id):
     patch_d = int(video.split('_')[2])  # 与帧率保持一致，30或者24
 
     # step 1： 获取解压后的avi视频
-    s_264 = raw_video_dir + video  # 264文件路径
+    s_264 = raw_video_dir + video + '/' + video + '_qp_00.264'  # 264文件路径
     s_avi = running_folder + video.split('.')[0] + '.avi'  # 转换为avi视频后的存储路径
     h264_to_avi(s_264, s_avi)
 
@@ -72,6 +72,7 @@ def task_function(task_id):
     print("正在计算 " + video + " 空间掩蔽")
     while ret:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        gray = gray / 255
         frames.append(gray)
         if count > (patch_d//2) and count % (patch_d//2) == 0:
             spatial_masking_frames.append(spatial_masking_effect(gray, block))
@@ -82,6 +83,8 @@ def task_function(task_id):
     # step 3: 使用frames 矩阵计算时间掩蔽效应矩阵
     print("正在计算" + video + " 时间掩蔽")
     temporal_masking_frames = temporal_masking_effect(np.array(frames), patch_h, patch_w, patch_d)
+    # np.save('data/sr_teat.py',spatial_masking_frames)
+    # np.save('data/tr_test.npy',temporal_masking_frames)
 
     # step 4: 将时空特征响应矩阵分成180*320*30的,每个patch计算均值，形成11×11×8 的一维特征向量
     s_patches = extract_patches(np.array(spatial_masking_frames))

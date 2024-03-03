@@ -71,7 +71,7 @@ def spatial_masking_effect(gray, block=9):
     # 本函数将返回gray的空间掩蔽响应
     # img 输入为帧矩阵，例如1080×1920的 ndarray
     start_time = time.time()
-    gray = gray / 255.0
+    # gray = gray / 255.0
     neighbourList = neighbour_list(block)
     neighborhood_pixels = get_neighborhood(gray, neighbourList)
 
