@@ -18,10 +18,11 @@ if __name__ == "__main__":
     # with Pool(processor_nb) as pool:
     #     pool.map(task_function, tasks)
 
+    # step 1 : 计算时空掩蔽效应特征
     # 存放所有原视频.264文件的文件夹
     raw_video_dir = 'D:/workspace/matlab/JND_prediction/dataset/264videos/'
     # 用于分配任务的视频文件名列表
     video_list = os.listdir(raw_video_dir)
-    tasks = [[raw_video_dir, filename] for filename in video_list]
+    tasks = [[raw_video_dir, filename] for filename in video_list[22:]]
     for e in tasks:
         task_function(e)
